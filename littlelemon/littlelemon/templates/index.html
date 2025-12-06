@@ -41,8 +41,8 @@
       <ul>
         <li><a href="{% url 'index' %}">Home</a></li>
         <li><a href="#">About</a></li>
-        <li><a href="#">Menu</a></li>
-        <li><a href="#">Book</a></li>
+        <li><a href="{% url 'menu' %}">Menu</a></li>
+        <li><a href="{% url 'book' %}">Book</a></li>
       </ul>
     </nav>
     <section>
@@ -51,7 +51,7 @@
         <p>
           30% Off This Weekend 
         </p>
-        <a href="#" class="cta"> Book now </a>
+        <a href="{% url 'book' %}" class="cta"> Book now </a>
       </article>
     </section>
     <section>
@@ -62,7 +62,7 @@
           Our menu consists of 12-15 seasonal items based on Italian, Greek, and Turkish culture.
         </p>
         <p>
-          <a href="#">See our new menu</a>
+          <a href="{% url 'menu' %}">See our new menu</a>
         </p>
       </article>
       <article>
@@ -72,7 +72,7 @@
           Reserve your table for an Italian, Greek, and Turkish dining experience.
         </p>
         <p>
-          <a href="#">Book your table now</a>
+          <a href="{% url 'book' %}">Book your table now</a>
         </p>
       </article>
       <article>

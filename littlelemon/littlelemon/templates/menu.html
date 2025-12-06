@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Menu - Little Lemon</title>
+    <meta name="description" content="Little Lemon Restaurant Menu" />
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{% static 'img/favicon.ico' %}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'css/style.css' %}"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla&family=Markazi+Text:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <img src="{% static 'img/logo.png' %}" alt="Little Lemon Restaurant Logo" />
+    </header>
+    <nav>
+      <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="{% url 'menu' %}">Menu</a></li>
+        <li><a href="{% url 'book' %}">Book</a></li>
+      </ul>
+    </nav>
+    <main style="padding: 2rem; max-width: 1200px; margin: 0 auto;">
+      <section>
+        <h1 style="font-size: 3rem; margin-bottom: 2rem; text-align: center;">Our Menu</h1>
+        {% if menu_items %}
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;">
+            {% for item in menu_items %}
+              <article style="border: 1px solid #ddd; border-radius: 8px; padding: 1.5rem; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <h2 style="color: #495e57; margin-bottom: 0.5rem;">{{ item.title }}</h2>
+                <p style="font-size: 1.5rem; color: #f4ce14; font-weight: bold; margin: 1rem 0;">
+                  ${{ item.price }}
+                </p>
+                {% if item.inventory > 0 %}
+                  <p style="color: #495e57; margin-top: 0.5rem;">
+                    <strong>Available:</strong> {{ item.inventory }} in stock
+                  </p>
+                {% else %}
+                  <p style="color: #c00; margin-top: 0.5rem;">
+                    <strong>Out of Stock</strong>
+                  </p>
+                {% endif %}
+              </article>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p style="text-align: center; font-size: 1.2rem; color: #666;">
+            No menu items available at this time. Please check back later.
+          </p>
+        {% endif %}
+      </section>
+    </main>
+    <footer>
+      <article>
+        <img src="{% static 'img/logo_footer.png' %}" alt="Little Lemon Restaurant Logo" />
+      </article>
+      <article>
+        <p>Copyright {% now "Y" %} Little Lemon</p>
+      </article>
+    </footer>
+  </body>
+</html>
+
